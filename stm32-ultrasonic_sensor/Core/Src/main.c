@@ -11,6 +11,8 @@ int main(void)
 
     SystemClock_Config();
 
+    UART2_init();
+
 	while(1);
 
 	return 0;
@@ -19,4 +21,9 @@ int main(void)
 void SystemClock_Config(void)
 {
 
+}
+
+void UART2_init()
+{
+    
 }

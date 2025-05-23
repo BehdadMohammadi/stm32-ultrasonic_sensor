@@ -5,4 +5,6 @@
 
 void SystemClock_Config(void);
 
+void UART2_init();
+
 #endif /* INC_MAIN_H_ */
