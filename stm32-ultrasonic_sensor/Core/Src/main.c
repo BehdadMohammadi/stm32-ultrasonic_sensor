@@ -6,6 +6,8 @@
 
 UART_HandleTypeDef huart2;
 
+char* user_data = "Behdad is Here\r\n";
+
 
 int main(void)
 {
@@ -15,6 +17,11 @@ int main(void)
     SystemClock_Config();
 
     UART2_init();
+    
+    if (HAL_UART_Transmit(&huart2, (uint8_t*)user_data, (uint16_t)strlen((char *)user_data), HAL_MAX_DELAY) != HAL_OK)
+	{
+		Error_handler();
+	}
 
 	while(1);
 
