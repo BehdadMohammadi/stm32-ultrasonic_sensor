@@ -4,9 +4,10 @@
 #include "stm32f4xx_hal.h"
 
 void SystemClock_Config(void);
+void UART2_init(void);
+void Error_handler(void);
+void TIMER2_Init(void);
 
-void UART2_init();
 
-void Error_handler();
 
 #endif /* INC_MAIN_H_ */
