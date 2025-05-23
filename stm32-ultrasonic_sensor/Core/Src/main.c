@@ -9,7 +9,14 @@ int main(void)
 
 	HAL_Init();
 
+    SystemClock_Config();
+
 	while(1);
 
 	return 0;
+}
+
+void SystemClock_Config(void)
+{
+
 }

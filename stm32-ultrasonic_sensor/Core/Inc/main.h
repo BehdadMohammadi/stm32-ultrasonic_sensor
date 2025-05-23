@@ -3,5 +3,6 @@
 
 #include "stm32f4xx_hal.h"
 
+void SystemClock_Config(void);
 
 #endif /* INC_MAIN_H_ */
