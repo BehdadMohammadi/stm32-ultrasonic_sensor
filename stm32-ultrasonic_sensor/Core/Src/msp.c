@@ -1,4 +1,6 @@
 #include "main.h"
+#include "stm32f4xx_hal_rcc_ex.h"
+
 
 void HAL_MspInit(void)
 {
@@ -54,4 +56,27 @@ void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef *htim)
 	// 3. NVIC settings
 	HAL_NVIC_SetPriority(TIM2_IRQn, 15, 0);
 	HAL_NVIC_EnableIRQ(TIM2_IRQn);
+}
+
+
+void HAL_TIM_IC_MspInit(TIM_HandleTypeDef *htim)
+{
+	GPIO_InitTypeDef tim3ch1_gpio;
+
+	 // 1. Enable the clock for the timer 3 peripheral
+	__HAL_RCC_TIM3_CLK_ENABLE();
+	__HAL_RCC_GPIOA_CLK_ENABLE();
+
+
+	// 2. Configure a gpio to behave as timer2 channel 1 (alternate function)
+	tim3ch1_gpio.Pin = GPIO_PIN_6;
+	tim3ch1_gpio.Mode = GPIO_MODE_AF_PP;
+	tim3ch1_gpio.Alternate = GPIO_AF2_TIM3;
+	HAL_GPIO_Init(GPIOA, &tim3ch1_gpio);
+
+	// 3. NVIC setting
+	HAL_NVIC_SetPriority(TIM3_IRQn, 15, 0);
+	HAL_NVIC_EnableIRQ(TIM3_IRQn);
+
+
 }
