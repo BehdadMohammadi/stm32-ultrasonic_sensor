@@ -71,9 +71,8 @@ void TIMER2_Init(void)
 
 	// 1 second period generates here
 	htimer2.Instance = TIM2;
-
-	htimer2.Init.Period = 1000000-1;
-	htimer2.Init.Prescaler = 15;
+	htimer2.Init.Period = 16000000-1;
+	htimer2.Init.Prescaler = 0;
 	if (HAL_TIM_PWM_Init(&htimer2) != HAL_OK)
 	{
 		Error_handler();
@@ -83,29 +82,12 @@ void TIMER2_Init(void)
 
 	tim2PWM_Config.OCMode = TIM_OCMODE_PWM1;
 	tim2PWM_Config.OCPolarity = TIM_OCPOLARITY_HIGH;
+	// 10 micro second high signal
 	tim2PWM_Config.Pulse = (htimer2.Init.Period*0.001)/100;
 
 	if (HAL_TIM_PWM_ConfigChannel(&htimer2, &tim2PWM_Config, TIM_CHANNEL_1) != HAL_OK)
 	{
 		Error_handler();
 	}
-
-	// tim2PWM_Config.Pulse = (htimer2.Init.Period*45)/100;
-	// if (HAL_TIM_PWM_ConfigChannel(&htimer2, &tim2PWM_Config, TIM_CHANNEL_2) != HAL_OK)
-	// {
-	// 	Error_handler();
-	// }
-
-	// tim2PWM_Config.Pulse = (htimer2.Init.Period*75)/100;
-	// if (HAL_TIM_PWM_ConfigChannel(&htimer2, &tim2PWM_Config, TIM_CHANNEL_3) != HAL_OK)
-	// {
-	// 	Error_handler();
-	// }
-
-	// tim2PWM_Config.Pulse = (htimer2.Init.Period*95)/100;
-	// if (HAL_TIM_PWM_ConfigChannel(&htimer2, &tim2PWM_Config, TIM_CHANNEL_4) != HAL_OK)
-	// {
-	// 	Error_handler();
-	// }
 
 }
